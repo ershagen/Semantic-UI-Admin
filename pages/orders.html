@@ -1,0 +1,134 @@
+<h2>Orders</h2>
+<div class="ui segment" style="box-shadow: none;">
+    <div class="ui breadcrumb">
+        <a href="#" class="section">Home</a>
+        <i class="right chevron icon divider"></i>
+        <a class="active section">Orders</a>
+    </div>
+</div>
+<div class="ui segment">
+    <h3 style="float:left;">List</h3>
+    <script>
+        $(function () {
+            $('.orders.menu .item').tab();
+        });
+    </script>
+    <div class="ui orders secondary pointing menu" style="margin: 0; border-width: 0px; float: right;">
+        <a class="item grey active" data-tab="latests-orders">All</a>
+        <a class="item yellow" data-tab="processeds-orders">Pending</a>
+        <a class="item red" data-tab="denieds-orders">Canceled</a>
+        <a class="item green" data-tab="finishs-orders">Done</a>
+    </div>
+    <div style="clear: both; margin-bottom: -13px;"></div>
+    <div class="ui divider"></div>
+    <div class="ui tab active" data-tab="latest-orders"> <!-- latest -->
+        <table class="orders-table" style="border-radius: 0px;" width="100%">
+            <thead>
+            <tr>
+                <th>Order #</th>
+                <th>Product</th>
+                <th>Date</th>
+                <th>Email</th>
+                <th>IMEI</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>4s</td>
+                <td>2016-09-09 12:51</td>
+                <td>info@example.com</td>
+                <td>5454545454545</td>
+                <td>$499</td>
+                <td>
+                    <script>
+                        $(function () {
+                            var id_select = jQuery(".select-first").attr('id');
+                            $('.orders-table').on('change', '#' + id_select + ' .select-first', function () {
+                                var options = $(this).find('option:selected').val();
+                                var ids = "<?php echo $ord['order_id']; ?>";
+                                var selecto = 'id=' + ids + '&option=' + options;
+                                /*$.ajax({
+                                    type: "POST",
+                                    url: "http://url/update_status.php",
+                                    data: selecto,
+                                    cache: false,
+                                    success: function (html) {
+                                        alert(html);
+                                    }
+                                });*/
+                            }
+                            )
+                            ;
+
+                        });
+                    </script>
+                    <select name="status" class="ui compact dropdown select-first" id="1">
+                        <option value="1">Behandlas</option>
+                        <option value="2">Bearbetas</option>
+                        <option value="3">Nekades</option>
+                        <option value="4">Klar</option>
+                        <option value="5">Klar/Betald</option>
+                    </select>
+                </td>
+                <td>
+                    <a href="javascript:void();"
+                       class="delbutton_alla ui button compact icon" id="1">
+                        <i class="trash icon"></i>
+                    </a>
+                    <script type="text/javascript">
+                        $(function () {
+                            var id = jQuery(".delbutton_alla").attr('id');
+                            $(".orders-table").on('click', '#' + id + ' .delbutton_alla', function () {
+                                        var del_id = "<?php echo $ord['order_id']; ?>";
+                                        var info = 'id=' + del_id;
+                                        if (confirm("Vill du ta bort den här beställningen?")) {
+                                            /*$.ajax({
+                                             type: "POST",
+                                             url: "http://url/delete_orders.php",
+                                             data: info,
+                                             success: function () {
+                                             }
+                                             });*/
+
+                                            $(this).parents(".record_cust").animate({backgroundColor: "#fbc7c7"}, "fast")
+                                                    .animate({opacity: "hide"}, "slow");
+                                        }
+                                        return false;
+                                    }
+                            )
+                            ;
+                        });
+                    </script>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('.orders-table').dataTable({
+            "pagingType": "full_numbers",
+            "order": [[2, "desc"]],
+            "language": {
+                "lengthMenu": "Visa _MENU_ st per sida",
+                "zeroRecords": "Inget hittades, tyvärr!",
+                "info": "Visar sida _PAGE_ av _PAGES_",
+                "infoEmpty": "Inget hittades",
+                "infoFiltered": "(sökning mellan totalt _MAX_ beställningar)",
+                "sSearch": "Sök:",
+                "oPaginate": {
+                    "sFirst": "Första",
+                    "sPrevious": "Föregående",
+                    "sNext": "Nästa",
+                    "sLast": "Sista"
+                }
+            }
+
+        });
+    });
+</script>

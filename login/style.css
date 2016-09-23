@@ -1,0 +1,88 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+        padding-bottom: 40px;
+        background-color: #f7f7f7;
+      }
+.container
+{
+	margin-top:80px;
+}
+h2
+{
+	font-family:Tahoma, Geneva, sans-serif;
+	color:#00a2d1;
+}
+.form-container
+{
+	width:500px;
+	margin:0 auto;
+	background:#fff;
+	padding: 25px;
+	box-shadow: 0px 0px 2px rgba(0,0,0,0.4);
+	border-radius:3px;
+}
+button
+{
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:25px;
+}
+label
+{
+	font-family:Tahoma, Geneva, sans-serif;
+	color:.00a9d1;
+}
+a
+{
+	text-decoration:underline;
+}
+
+/* home page style */
+
+.header
+{
+	text-align:center;
+	font-size:25px;
+	color:#fff;
+	background:#00a2d1;
+	height:60px;
+	width:100%;
+}
+.header a
+{
+	color:#f9f9f9;
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:25px;
+	text-decoration:none;
+	position:relative;
+	top:15px;
+}
+.header .left
+{
+	float:left;
+	position:relative;
+	left:150px;
+}
+.header .right
+{
+	float:right;
+	position:relative;
+	right:150px;
+}
+.content
+{
+	margin:0 auto;
+	margin-top:100px;
+	text-align:center;
+	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-size:55px;
+	color:#00a2d1;
+}
+.content p
+{
+	font-size:30px;
+	color:#004567;
+	width:800px;
+	margin:0 auto;
+}
