@@ -26,6 +26,10 @@ try {
 	$customers_state = $objDb->query($customers_sql);
 	$cust = $customers_state->fetchAll(PDO::FETCH_ASSOC);	
 	
+	$supplier_sql = "SELECT * FROM `v_suppliers` ORDER by supplier_id DESC";
+	$supplier_state = $objDb->query($supplier_sql);
+	$supp = $supplier_state->fetchAll(PDO::FETCH_ASSOC);	
+	
 	
 } catch(PDOException $e) {
 	echo "Något fel hände.."; 
@@ -123,7 +127,7 @@ try {
 						
 						<td>
 						
-						<a class="tab-item-<?php echo $product_id; ?>" href="javascript:void();"><div class="ui button icon green compact"><i class="edit icon"></i></div> </a>
+						<a class="tab-item" href="javascript:void();" data-tab="products/<?php echo $product_id; ?>"><div class="ui button icon green compact"><i class="edit icon"></i></div> </a>
 				
 						<a href="javascript:void();" class="delbuttono<?php echo $product_id; ?>">
 						<div class="ui button icon compact"><i class="trash icon"></i></div>
@@ -225,7 +229,7 @@ try {
 								
 								
 	
-					<form class="ui form" id="validateMe" enctype="multipart/form-data" action="add_product.php" method="post">
+					<form class="ui form" id="validateMe" enctype="multipart/form-data" action="http://valfrimobil.se/admin/add_product.php" method="post">
 					
 					<div class="ui doubling two column grid">
 				
@@ -285,9 +289,18 @@ try {
 											<input placeholder="99" id="express_price" name="express_price" type="text">
 										</div>
 									</div>
-									
 								</div>
-								
+							
+									<div class="field">
+										<label>Kod (Om kod ska fås vid upplåsning)</label>
+										<select name="code" class="ui dropdown">
+											<option value="1">Ja</option>
+											<option value="0">Nej</option>
+										</select>
+									</div>
+									
+									
+								<div style="height: 3px;"></div>
 
 															
 				
@@ -327,6 +340,29 @@ try {
 										<?php }} ?>
 									</select>
 								</div>
+								
+								<div class="field">
+								
+									<label>Leverantör (välj ingen om bara admin ska sköta)</label>
+									<select name="supplier_id" class="ui search selection dropdown">
+										<option value="0">Ingen</option>
+										  <?php if(!empty($supp)) { ?>
+										  <?php foreach($supp as $supplier) { ?>
+													
+											<option value="<?php echo $supplier['supplier_id']; ?>"><?php echo $supplier['company_name']; ?></option>
+										
+										<?php }} ?>
+									</select>
+								</div>
+								
+								
+								<div class="field">
+									<label>Land</label>
+									<select name="language" class="ui search selection dropdown">
+										<option value="0">Sverige</option>
+										<option value="1">USA</option>
+									</select>
+								</div>
 						
 					</div>
 				
@@ -336,7 +372,7 @@ try {
 					</div>
 						
 						<div class="field">
-							<input type="submit" value="Lägg till" class="ui button">
+							<input type="submit" value="Lägg till" class="ui button green">
 						</div>
 
 						</form>
@@ -344,6 +380,23 @@ try {
 					</div>
 
 
+<script>
+	    $(function() {
+		
+				    
+		    $('.tab-item').tab({
+				  history: false,
+				  cache: false,
+				  apiSettings: {
+				  	url: 'pages2/one_product.php?id={$tab}'
+				  }
+				    
+			  })
+			  ;
+			
+	    });
+    </script>
+    
 
 
       	<script>

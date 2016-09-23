@@ -37,10 +37,11 @@ try {
 		<h3>Lista på administratörer</h3>
 		<div class="ui divider"></div>
 		
-	  <table id="orders-table" class="ui table stripe"  style="border-radius: 0px;" cellspacing="0" width="100%">
+	  <table id="orders-table" class="ui table striped"  style="border-radius: 0px;" cellspacing="0" width="100%">
     <thead>
         <tr>
             <th>E-post</th>
+            <th>Användarnamn</th>
             <th>Förnamn</th>
             <th>Efternamn</th>
             <th>Åtgärder</th>
@@ -52,7 +53,7 @@ try {
 		<?php foreach($admin as $admi) {?>
 		<tr class="records">
 						
-						<td><?php echo $admi['email']; ?></td><td><?php echo $admi['firstname']; ?></td><td><?php echo $admi['lastname']; ?></td>
+						<td><?php echo $admi['email']; ?></td><td><?php echo $admi['username']; ?></td><td><?php echo $admi['firstname']; ?></td><td><?php echo $admi['lastname']; ?></td>
 						
 						<td>
 						

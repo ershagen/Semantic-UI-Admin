@@ -1,48 +1,10 @@
-
-	        <?php
+<?php
 session_start();
 
 try {
 	$objDb = new PDO('mysql:host=mysql08.citynetwork.se;dbname=111335-valfrimobil', '111335-ve72158', 'Sommar11');
 	$objDb->exec('SET CHARACTER SET utf8');
 	
-	$sql = "SELECT * FROM `v_products_2` WHERE product_id = '{$_GET['id']}'";
-	$statement = $objDb->query($sql);
-	$list = $statement->fetchAll(PDO::FETCH_ASSOC);
-	
-	$sql_list = "SELECT * FROM `v_products_2` ORDER BY product_id DESC";
-	$statement_list = $objDb->query($sql_list);
-	$list_list = $statement_list->fetchAll(PDO::FETCH_ASSOC);
-	
-	$order_sql = "SELECT * FROM `v_orders` ORDER by order_id ASC";
-	$order_state = $objDb->query($order_sql);
-	$orders = $order_state->fetchAll(PDO::FETCH_ASSOC);
-	
-	
-	$order_cust_sql = "SELECT * FROM `v_customers_orders` ORDER by order_id ASC";
-	$order_state_cust = $objDb->query($order_cust_sql);
-	$orders_cust = $order_state_cust->fetchAll(PDO::FETCH_ASSOC);
-	
-	$order_sql_dash = "SELECT * FROM `v_orders` ORDER by order_id ASC LIMIT 5";
-	$order_state_dash = $objDb->query($order_sql_dash);
-	$orders_dash = $order_state_dash->fetchAll(PDO::FETCH_ASSOC);
-	
-	
-	$product_sql = "SELECT * FROM `v_products_2` ORDER by product_id DESC";
-	$product_state = $objDb->query($product_sql);
-	$products = $product_state->fetchAll(PDO::FETCH_ASSOC);
-	
-	$product_sql_list = "SELECT * FROM `v_products_2` WHERE customer_id = '0' ORDER by product_id DESC";
-	$product_state_list = $objDb->query($product_sql_list);
-	$products_list = $product_state_list->fetchAll(PDO::FETCH_ASSOC);
-	
-	$admin_sql = "SELECT * FROM `v_admins` ORDER by a_id DESC";
-	$admin_state = $objDb->query($admin_sql);
-	$admin = $admin_state->fetchAll(PDO::FETCH_ASSOC);
-	
-	$coupons_sql = "SELECT * FROM `v_coupons` ORDER by c_id DESC";
-	$coupons_state = $objDb->query($coupons_sql);
-	$coupons = $coupons_state->fetchAll(PDO::FETCH_ASSOC);
 
 	$customers_sql = "SELECT * FROM `v_customers` ORDER by customer_id DESC";
 	$customers_state = $objDb->query($customers_sql);
@@ -59,18 +21,18 @@ try {
 ?>   
 		
 
-	     <h2>Kunder</h2>
+	     <h2>Återförsäljare</h2>
 		<div class="ui segment" style="box-shadow: none;">
 			<div class="ui breadcrumb">
 			  <a href="#" class="section">Hem</a>
 			  <i class="right chevron icon divider"></i>
-			  <a class="active section">Kunder</a>
+			  <a class="active section">Återförsäljare</a>
 			</div>
 		</div>
 
 		<div class="ui segment" style="box-shadow: none;">
 				
-		<h3>Lista på kunder</h3>
+		<h3>Lista på återförsäljare</h3>
 		<div class="ui divider"></div>
 
 	
@@ -84,6 +46,7 @@ try {
             <th>Org.nr</th>
             <th>Användarnamn</th>
             <th>Aktiv</th>
+            <th>Standard produkter</th>
             <th>Åtgärder</th>
         </tr>
     </thead>
@@ -124,9 +87,43 @@ try {
 				     </select>
 						</td>
 						
+						<td>
+						
+						<script>
+							$(function() {
+								$(".customertable").on('click', '#add_standard_products<?php echo $custer['customer_id']; ?>', function() {
+
+									var option = $(this).val();
+									var id = "<?php echo $custer['customer_id']; ?>";
+									var dataString = 'id='+ id + '&option='+ option;
+									
+								    $.ajax({
+										type: "POST",
+										url: "add_standard_products.php",
+										data: dataString,
+										cache: false,
+										beforeSend: function(html) {
+										$("#add_standard_products<?php echo $custer['customer_id']; ?>").fadeIn(200).html("<div class='ui active inline loader' style='margin-bottom: 12px;'></div>");
+									   },
+										success: function(html){
+											//alert(html);
+											$("#add_standard_products<?php echo $custer['customer_id']; ?>").html("<div class='ui message positive'>Tillagda!</div>");
+										}
+									});
+
+
+								});
+								
+							});
+							</script>
+							
+							<a href="javascript:void();" id="add_standard_products<?php echo $custer['customer_id']; ?>">Lägg till</a>
+							
+						</td>
+						
 				<td>
 						
-				<a class="tab-item-show-cust<?php echo $custer['customer_id']; ?> ui button icon green compact" href="javascript:void();"><i class="edit icon"></i></a>
+				<a class="tab-items" href="javascript:void();" data-tab="customers/<?php echo $custer['customer_id']; ?>"><div class="ui button icon green compact"><i class="edit icon"></i></div> </a>
 				
 				<a href="javascript:void();" class="delbutton_cust<?php echo $custer['customer_id']; ?> ui button icon compact">
 					<i class="trash icon"></i>
@@ -291,19 +288,36 @@ try {
 				
 						
 						<div class="field">
-							<input type="submit" value="Lägg till" class="ui button">
+							<input type="submit" value="Lägg till" class="ui button green">
 						</div>
 
 						</form>
 
 
 					</div>
-	      
+	      <script>
+	    $(function() {
+		
+				    
+		    $('.tab-items').tab({
+				  history: false,
+				  cache: false,
+				  apiSettings: {
+				  	url: 'pages2/one_customer.php?id={$tab}'
+				  }
+				    
+			  })
+			  ;
+			
+	    });
+    </script>
+	
+	
 	          	<script>
 		 $(document).ready(function() {
 		    $('.customertable').dataTable({
 		        "pagingType": "full_numbers",
-				"order": [[ 2, "desc" ]],
+				"order": [[ 0, "desc" ]],
 			        "language": {
 			            "lengthMenu": "Visa _MENU_ st per sida",
 			            "zeroRecords": "Inget hittades, tyvärr!",
@@ -323,5 +337,3 @@ try {
 		});
 		</script>
 		
-
-	

@@ -49,7 +49,7 @@ try {
 		
     <div  class="ui orderss secondary pointing menu" style=" margin: 0; border-width: 0px; float: right;">
       <a class="item active" data-tab="latests-cust-order">Alla</a>
-      <a class="item grey" data-tab="processings-cust-order">Behandlas</a>
+      <a class="item grey" data-tab="processings-cust-order">Mottagen</a>
       <a class="item yellow" data-tab="processeds-cust-order">Bearbetas</a>
       <a class="item red" data-tab="denieds-cust-order">Nekades</a>
       <a class="item green" data-tab="finishs-cust-order">Klar</a>
@@ -175,7 +175,7 @@ try {
 									
 								    $.ajax({
 										type: "POST",
-										url: "http://valfrimobil.se/admin/update_customerorder_status.php",
+										url: "http://valfrimobil.se/admin/update_customerorder_status_2.php",
 										data: selecto,
 										cache: false,
 										success: function(html){
@@ -190,7 +190,7 @@ try {
 							</script>
 							
 							<select id="select-firsts<?php echo $ord['order_id']; ?>" name="status" class="ui compact dropdown">
-							  <option value="1" <?php if($ord['status'] == '1') echo "selected" ?>>Behandlas</option>
+							  <option value="1" <?php if($ord['status'] == '1') echo "selected" ?>>Mottagen</option>
 							  <option value="2" <?php if($ord['status'] == '2') echo "selected" ?>>Bearbetas</option>
 							  <option value="3" <?php if($ord['status'] == '3') echo "selected" ?>>Nekades</option>
 
@@ -372,7 +372,7 @@ try {
 									
 								    $.ajax({
 										type: "POST",
-										url: "http://valfrimobil.se/admin/update_customerorder_status.php",
+										url: "http://valfrimobil.se/admin/update_customerorder_status_2.php",
 										data: dataString,
 										cache: false,
 										success: function(html){
@@ -387,7 +387,7 @@ try {
 							
 							
 							<select name="status" class="ui compact dropdown" id="processings<?php echo $ord['order_id']; ?>">
-							  <option value="1" <?php if($ord['status'] == '1') echo "selected" ?>>Behandlas</option>
+							  <option value="1" <?php if($ord['status'] == '1') echo "selected" ?>>Mottagen</option>
 							  <option value="2" <?php if($ord['status'] == '2') echo "selected" ?>>Bearbetas</option>
 							  <option value="3" <?php if($ord['status'] == '3') echo "selected" ?>>Nekades</option>
 
@@ -572,7 +572,7 @@ try {
 									
 								    $.ajax({
 										type: "POST",
-										url: "http://valfrimobil.se/admin/update_customerorder_status.php",
+										url: "http://valfrimobil.se/admin/update_customerorder_status_2.php",
 										data: dataString,
 										cache: false,
 										success: function(html){
@@ -585,7 +585,7 @@ try {
 							});
 							</script>
 							<select name="customer_status" class="ui compact dropdown" id="processeds<?php echo $ord['order_id']; ?>">
-							  <option value="1" <?php if($ord['status'] == '1') echo "selected" ?>>Behandlas</option>
+							  <option value="1" <?php if($ord['status'] == '1') echo "selected" ?>>Mottagen</option>
 							  <option value="2" <?php if($ord['status'] == '2') echo "selected" ?>>Bearbetas</option>
 							  <option value="3" <?php if($ord['status'] == '3') echo "selected" ?>>Nekades</option>
 
@@ -755,7 +755,7 @@ try {
 									
 								    $.ajax({
 										type: "POST",
-										url: "http://valfrimobil.se/admin/update_customerorder_status.php",
+										url: "http://valfrimobil.se/admin/update_customerorder_status_2.php",
 										data: selecto,
 										cache: false,
 										success: function(html){
@@ -770,7 +770,7 @@ try {
 							</script>
 							
 							<select id="select-firsts<?php echo $ord['order_id']; ?>" name="status" class="ui compact dropdown">
-							  <option value="1" <?php if($ord['status'] == '1') echo "selected" ?>>Behandlas</option>
+							  <option value="1" <?php if($ord['status'] == '1') echo "selected" ?>>Mottagen</option>
 							  <option value="2" <?php if($ord['status'] == '2') echo "selected" ?>>Bearbetas</option>
 							  <option value="3" <?php if($ord['status'] == '3') echo "selected" ?>>Nekades</option>
 
@@ -942,7 +942,7 @@ try {
 									
 								    $.ajax({
 										type: "POST",
-										url: "http://valfrimobil.se/admin/update_customerorder_status.php",
+										url: "http://valfrimobil.se/admin/update_customerorder_status_2.php",
 										data: selecto,
 										cache: false,
 										success: function(html){
@@ -957,7 +957,7 @@ try {
 							</script>
 							
 							<select id="select-firsts<?php echo $ord['order_id']; ?>" name="status" class="ui compact dropdown">
-							  <option value="1" <?php if($ord['status'] == '1') echo "selected" ?>>Behandlas</option>
+							  <option value="1" <?php if($ord['status'] == '1') echo "selected" ?>>Mottagen</option>
 							  <option value="2" <?php if($ord['status'] == '2') echo "selected" ?>>Bearbetas</option>
 							  <option value="3" <?php if($ord['status'] == '3') echo "selected" ?>>Nekades</option>
 
@@ -1130,7 +1130,7 @@ try {
 									
 								    $.ajax({
 										type: "POST",
-										url: "http://valfrimobil.se/admin/update_customerorder_status.php",
+										url: "http://valfrimobil.se/admin/update_customerorder_status_2.php",
 										data: selecto,
 										cache: false,
 										success: function(html){
