@@ -5,18 +5,18 @@
         <i class="right chevron icon divider"></i>
         <a data-tab="products" class="section tab-item">Products</a>
         <i class="right chevron icon divider"></i>
-        <a class="active section"><?php echo $carrier; ?> <?php echo $mobile; ?></a>
+        <a class="active section">Product name</a>
     </div>
 </div>
 <div class="ui segment">
     <script>
         jQuery(document).ready(function ($) {
 
-            $('#validateMes<?php echo $pro_id; ?>').validate({
+            $('#validateMe1').validate({
                 submitHandler: function (form) {
                     $(form).ajaxSubmit({
                         success: function (resp) {
-                            $("#success-product<?php echo $pro_id; ?>").fadeIn(300).html(resp);
+                            $("#success-product1").fadeIn(300).html(resp);
                         }
                     });
                 }
@@ -42,44 +42,28 @@
             <div class="column">
                 <input type="hidden" value="<?php echo $pro_id; ?>" name="id">
                 <div class="field">
-                    <label>Operatör</label>
-                    <input value="<?php echo $carrier; ?>" id="carrier" name="carrier" type="text">
-                </div>
-                <div class="field">
-                    <label>Mobil</label>
-                    <input value="<?php echo $mobile; ?>" id="mobile" title="Fyll i en mobil" name="mobile" type="text">
-                </div>
-                <div class="field required">
-                    <label>Modell (Om flera - markera ut andra genom ett kommatecken)</label>
-                    <input value="<?php echo $models; ?>" id="model" title="Fyll i en modell" name="model" type="text"
-                           required>
+                    <label>Product name</label>
+                    <input value="Name" id="carrier" name="carrier" type="text">
                 </div>
                 <div class="field required">
                     <label>Status</label>
                     <select name="published" class="ui dropdown">
-                        <option value="1">Publicerad</option>
-                        <option value="0">Inte publicerad</option>
+                        <option value="1">Published</option>
+                        <option value="0">Not published</option>
                     </select>
                 </div>
                 <div class="field">
-                    <label>Leveranstid (timmar)</label>
+                    <label>Delivery time</label>
                     <input value="<?php echo $delivery; ?>" id="delivery" title="Fyll i detta fältet" name="delivery"
                            type="text" required>
                 </div>
-                <div class="field">
-                    <label>Kod (Om kod ska fås vid upplåsning)</label>
-                    <select name="codeco" class="ui dropdown">
-                        <option value="1">Ja</option>
-                        <option value="0">Nej</option>
-                    </select>
-                </div>
                 <div class="two fields">
                     <div class="field six wide">
-                        <label>Nuvarande bild</label>
+                        <label>Image</label>
                         <img src="<?php echo $phone_picture; ?>" width="100%"/><br/>
                     </div>
                     <div class="field nine wide">
-                        <label>Ändra</label>
+                        <label>Edit</label>
                         <input type="file" title="Du måste ladda upp en bild" accept="image/*" id="file"
                                name="file"><br/>
                     </div>
@@ -88,20 +72,20 @@
             </div>
             <div class="column">
                 <div class="field">
-                    <label>Beskrivning</label>
+                    <label>Description</label>
                     <textarea title="Fyll i en beskrivning" id="description" name="description"
-                              style="height: 189px;"><?php echo nl2br($description); ?></textarea>
+                              style="height: 189px;">Text</textarea>
                 </div>
                 <div class="field required">
-                    <label>Pris</label>
-                    <input value="<?php echo $price; ?>" id="price" title="Skriv in ett pris i siffror" name="price"
+                    <label>Price</label>
+                    <input value="444" id="price" title="Skriv in ett pris i siffror" name="price"
                            type="text" required>
                     <div class="error"></div>
                 </div>
                 <div class="field">
-                    <label>Land</label>
+                    <label>Country</label>
                     <select name="language" class="ui search selection dropdown">
-                        <option value="0">Sverige</option>
+                        <option value="0">Sweden</option>
                         <option value="1">USA</option>
                     </select>
                 </div>
@@ -138,7 +122,7 @@
             history: false,
             cache: false,
             apiSettings: {
-                url: 'pages2/{$tab}.php'
+                url: 'pages/{$tab}.php'
             }
         })
         ;

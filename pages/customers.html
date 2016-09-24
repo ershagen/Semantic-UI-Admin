@@ -6,7 +6,6 @@
         <a class="active section">Customers</a>
     </div>
 </div>
-
 <div class="ui segment">
     <h3>List</h3>
     <div class="ui divider"></div>
@@ -23,7 +22,6 @@
         </thead>
         <tbody>
                 <tr class="record">
-
                     <td>1></td>
                     <td>Test Nielsen</td>
                     <td>555555</td>
@@ -35,8 +33,7 @@
                                     var option = $(this).find('option:selected').val();
                                     var id = "<?php echo $custer['customer_id']; ?>";
                                     var dataString = 'id=' + id + '&option=' + option;
-
-                                    $.ajax({
+                                    /*$.ajax({
                                         type: "POST",
                                         url: "update_status_customer.php",
                                         data: dataString,
@@ -44,17 +41,14 @@
                                         success: function (html) {
 
                                         }
-                                    });
-
-
+                                    });*/
                                 });
-
                             });
                         </script>
                         <select name="status" class="ui compact dropdown"
                                 id="customer1">
-                            <option value="1">Aktiverad</option>
-                            <option value="0">Inte aktiverad</option>
+                            <option value="1">Activated</option>
+                            <option value="0">Inactivated</option>
                         </select>
                     </td>
                     <td>
@@ -121,7 +115,6 @@
                     });
                 }
             });
-
         });
     </script>
     <h3>Add</h3>
@@ -130,43 +123,35 @@
     <div id="success-products" style="display: none;" class="ui success message"></div>
     <form action="http://valfrimobil.se/add_customer.php" method="post" id="ansok" class="ui form">
         <div class="field required">
-            <label>Kontaktperson</label>
+            <label>Contact person</label>
             <input placeholder="" title="Fyll i en kontaktperson" id="name" name="name" type="text" required>
         </div>
         <div class="field required">
-            <label>Företagsnamn</label>
-            <input placeholder="" title="Fyll i ett företagsnamn" id="company" name="company" type="text" required>
-        </div>
-        <div class="field required">
-            <label>Org.nr</label>
-            <input placeholder="" title="Fyll i ett org.nr" id="orgnr" name="orgnr" type="text" required>
-        </div>
-        <div class="field required">
-            <label>Adress</label>
+            <label>Address</label>
             <input placeholder="" id="address" title="Fyll i en adress" name="model" type="text" required>
         </div>
         <div class="field required">
-            <label>Postnummer</label>
+            <label>Zipcode</label>
             <input placeholder="" id="postnumber" title="Fyll i ett postnummer" name="postnumber" type="text" required>
         </div>
         <div class="field required">
-            <label>Telefonnummmer</label>
+            <label>Phone</label>
             <input placeholder="" id="number" title="Fyll i ett telefonnummer" name="number" type="text" required>
         </div>
         <div class="field required">
-            <label>E-post</label>
+            <label>Email</label>
             <input placeholder="" id="email" title="Fyll i en e-postadress" name="email" type="text" required>
         </div>
         <div class="field required">
-            <label>Användarnamn</label>
+            <label>Username</label>
             <input placeholder="" id="username" title="Fyll i ett telefonnummer" name="username" type="text" required>
         </div>
         <div class="field required">
-            <label>Lösenord</label>
+            <label>Password</label>
             <input placeholder="" id="password" title="Fyll i ett lösenord" name="password" type="text" required>
         </div>
         <div class="field">
-            <input type="submit" value="Lägg till" class="ui button green">
+            <input type="submit" value="Add" class="ui button green">
         </div>
     </form>
 </div>
@@ -185,7 +170,8 @@
         $('.customertable').dataTable({
             "pagingType": "full_numbers",
             "order": [[0, "desc"]],
-            "language": {
+            // Here you can change language if you want
+            /*"language": {
                 "lengthMenu": "Visa _MENU_ st per sida",
                 "zeroRecords": "Inget hittades, tyvärr!",
                 "info": "Visar sida _PAGE_ av _PAGES_",
@@ -198,8 +184,7 @@
                     "sNext": "Nästa",
                     "sLast": "Sista"
                 }
-            }
-
+            }*/
         });
     });
 </script>

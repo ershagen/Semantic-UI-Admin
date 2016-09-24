@@ -1,33 +1,31 @@
-<h2>Produkter</h2>
+<h2>Products</h2>
 <div class="ui segment">
     <div class="ui breadcrumb">
         <a href="#" class="section">Hem</a>
         <i class="right chevron icon divider"></i>
-        <a class="active section">Produkter</a>
+        <a class="active section">Products</a>
     </div>
 </div>
 <div class="ui segment">
-    <h3>Lista på produkter</h3>
+    <h3>List</h3>
     <div class="ui divider"></div>
     <table class="products-tables" style="border-radius: 0px;" width="100%">
         <thead>
         <tr>
             <th>ID</th>
-            <th>Produktnamn</th>
-            <th>Modeller</th>
-            <th>Pris</th>
-            <th>Datum</th>
+            <th>Product name</th>
+            <th>Price</th>
+            <th>Date</th>
             <th>Status</th>
-            <th>Åtgärder</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
                 <tr class="record">
 
                     <td>1</td>
-                    <td>1</td>
                     <td>4</td>
-                    <td>$44></td>
+                    <td>$44</td>
                     <td>e</td>
 
                     <td>
@@ -237,7 +235,7 @@
             history: false,
             cache: false,
             apiSettings: {
-                url: 'pages2/one_product.php?id={$tab}'
+                url: 'pages/one_product.html?id={$tab}'
             }
         })
         ;
@@ -246,7 +244,8 @@
         $('.products-tables').dataTable({
             "pagingType": "full_numbers",
             "order": [[0, "desc"]],
-            "language": {
+            // Here you can change language if you want
+            /*"language": {
                 "lengthMenu": "Visa _MENU_ st per sida",
                 "zeroRecords": "Inget hittades, tyvärr!",
                 "info": "Visar sida _PAGE_ av _PAGES_",
@@ -259,7 +258,7 @@
                     "sNext": "Nästa",
                     "sLast": "Sista"
                 }
-            }
+            }*/
         });
     });
 </script>
