@@ -20,19 +20,17 @@
         </tr>
         </thead>
         <tbody>
-        <?php if (!empty($cust)) { ?>
-            <?php foreach ($cust as $custer) { ?>
                 <tr class="record">
 
-                    <td><?php echo $custer['page_id']; ?></td>
-                    <td><?php echo $custer['subject']; ?></td>
-                    <td>sidor/<?php echo $custer['address']; ?>-<?php echo $custer['page_id']; ?></td>
+                    <td>1</td>
+                    <td>aaa</td>
+                    <td>sidor/aaa</td>
                     <td>
                         <script>
                             $(function () {
-                                $('#page<?php echo $custer['page_id']; ?>').change(function () {
+                                $('#page1').change(function () {
                                     var option = $(this).find('option:selected').val();
-                                    var id = "<?php echo $custer['page_id']; ?>";
+                                    var id = "1";
                                     var dataString = 'id=' + id + '&option=' + option;
                                     /*$.ajax({
                                         type: "POST",
@@ -44,30 +42,30 @@
                                 });
                             });
                         </script>
-                        <select name="status" class="ui compact dropdown" id="page<?php echo $custer['page_id']; ?>">
-                            <option value="1" <?php if ($custer['published'] == '1') echo "selected" ?>>Publicerad
+                        <select name="status" class="ui compact dropdown" id="page1">
+                            <option value="1">Publicerad
                             </option>
-                            <option value="0" <?php if ($custer['published'] == '0') echo "selected" ?>>Ej publicerad
+                            <option value="0">Ej publicerad
                             </option>
                         </select>
                     </td>
                     <td>
                         <a class="tab-items" href="javascript:void();"
-                           data-tab="pages/<?php echo $custer['page_id']; ?>">
+                           data-tab="pages/1">
                             <div class="ui button icon green compact"><i class="edit icon"></i></div>
                         </a>
                         <a href="javascript:void();"
-                           class="delbutton_custser<?php echo $custer['page_id']; ?> ui button icon compact">
+                           class="delbutton_custser1 ui button icon compact">
                             <i class="trash icon"></i>
                         </a>
                         <script type="text/javascript">
                             $(function () {
-                                $(".customertable").on('click', '.tab-item-show-cust<?php echo $custer['customer_id']; ?>', function () {
-                                    $.tab('change tab', 'customers/<?php echo $custer['customer_id']; ?>');
-                                    $.tab('set state', 'customers/<?php echo $custer['customer_id']; ?>');
+                                $(".customertable").on('click', '.tab-item-show-cust1', function () {
+                                    $.tab('change tab', 'customers/1');
+                                    $.tab('set state', 'customers/1');
                                 });
-                                $(".pagesTable").on('click', '.delbutton_custser<?php echo $custer['page_id']; ?>', function () {
-                                    var del_id = "<?php echo $custer['page_id']; ?>";
+                                $(".pagesTable").on('click', '.delbutton_custser1', function () {
+                                    var del_id = "1";
                                     var info = 'id=' + del_id;
                                     if (confirm("Vill du ta bort den här sidan?")) {
                                         /* $.ajax({
@@ -87,8 +85,6 @@
                         </script>
                     </td>
                 </tr>
-            <?php }
-        } ?>
         </tbody>
     </table>
 </div>
@@ -123,7 +119,7 @@
     <div class="ui divider"></div>
     <div id="result" style="display: none;" class="ui error message"></div>
     <div id="success-products2s" style="display: none;" class="ui success message"></div>
-    <form action="http://valfrimobil.se/add_page.php" method="post" id="add_page" class="ui form">
+    <form action="add_page.php" method="post" id="add_page" class="ui form">
         <div class="field required">
             <label>Rubrik</label>
             <input placeholder="" title="Fyll i ett namn" id="name" name="name" type="text" required>
@@ -154,7 +150,7 @@
             history: false,
             cache: false,
             apiSettings: {
-                url: 'pages2/one_page.php?id={$tab}'
+                url: 'pages/one_page.php?id={$tab}'
             }
         })
         ;

@@ -1,88 +1,84 @@
-<h2>Meny</h2>
+<h2>Customers</h2>
 <div class="ui segment">
     <div class="ui breadcrumb">
-        <a href="#" class="section">Hem</a>
+        <a href="#" class="section">Home</a>
         <i class="right chevron icon divider"></i>
-        <a class="active section">Meny</a>
+        <a class="active section">Customers</a>
     </div>
 </div>
+
 <div class="ui segment">
     <h3>List</h3>
     <div class="ui divider"></div>
-    <table class="menuTable" style="border-radius: 0px;" width="100%">
+    <table class="customertable" style="border-radius: 0px;" width="100%">
         <thead>
         <tr>
             <th>ID</th>
-            <th>Namn</th>
-            <th>Länk</th>
-            <th>Placering</th>
-            <th>Publicerad</th>
+            <th>Företagsnamn</th>
+            <th>Org.nr</th>
+            <th>Användarnamn</th>
+            <th>Aktiv</th>
             <th>Åtgärder</th>
         </tr>
         </thead>
         <tbody>
                 <tr class="record">
-                    <td>1</td>
+
+                    <td>1></td>
+                    <td>Test Nielsen</td>
+                    <td>555555</td>
                     <td>Test</td>
-                    <td>aaa</td>
-                    <td>er</td>
                     <td>
                         <script>
                             $(function () {
-                                $('#menu1').change(function () {
+                                $('#customer1').change(function () {
                                     var option = $(this).find('option:selected').val();
-                                    var id = "1";
+                                    var id = "<?php echo $custer['customer_id']; ?>";
                                     var dataString = 'id=' + id + '&option=' + option;
 
-                                   /* $.ajax({
+                                    $.ajax({
                                         type: "POST",
-                                        url: "update_status_menu.php",
+                                        url: "update_status_customer.php",
                                         data: dataString,
                                         cache: false,
                                         success: function (html) {
 
                                         }
-                                    });*/
+                                    });
 
 
                                 });
 
                             });
                         </script>
-                        <select name="status" class="ui compact dropdown" id="menu1">
-                            <option value="1">Publicerad
-                            </option>
-                            <option value="0">Ej publicerad
-                            </option>
+                        <select name="status" class="ui compact dropdown"
+                                id="customer1">
+                            <option value="1">Aktiverad</option>
+                            <option value="0">Inte aktiverad</option>
                         </select>
                     </td>
-
-
                     <td>
-
                         <a class="tab-items" href="javascript:void();"
                            data-tab="customers/1">
                             <div class="ui button icon green compact"><i class="edit icon"></i></div>
                         </a>
-
                         <a href="javascript:void();"
-                           class="delbutton_custs<?php echo $custer['menu_id']; ?> ui button icon compact">
+                           class="delbutton_cust1 ui button icon compact">
                             <i class="trash icon"></i>
                         </a>
-
                         <script type="text/javascript">
                             $(function () {
                                 $(".customertable").on('click', '.tab-item-show-cust1', function () {
                                     $.tab('change tab', 'customers/1');
                                     $.tab('set state', 'customers/1');
                                 });
-                                $(".menuTable").on('click', '.delbutton_custs1', function () {
-                                    var del_id = "<?php echo $custer['menu_id']; ?>";
+                                $(".customertable").on('click', '.delbutton_cust1', function () {
+                                    var del_id = "<?php echo $custer['customer_id']; ?>";
                                     var info = 'id=' + del_id;
-                                    if (confirm("Vill du ta bort det här menyalternativet?")) {
-                                        /*$.ajax({
+                                    if (confirm("Vill du ta bort den här kunden?")) {
+                                      /*  $.ajax({
                                             type: "POST",
-                                            url: "http://valfrimobil.se/admin/delete_menu.php",
+                                            url: "url/admin/delete_customer.php",
                                             data: info,
                                             success: function () {
                                             }
@@ -95,15 +91,8 @@
 
                             });
                         </script>
-
-
                     </td>
-
                 </tr>
-
-
-            <?php }
-        } ?>
         </tbody>
     </table>
 </div>
@@ -123,33 +112,58 @@
                     $(element).closest(".error").removeClass("error").addClass("success");
                 }
             });
-            $('#add_menu').validate({
+            $('#ansok').validate({
                 submitHandler: function (form) {
                     $(form).ajaxSubmit({
                         success: function (resp) {
-                            $("#success-products2").fadeIn(300).html(resp);
+                            $("#success-products").fadeIn(300).html("Kunden lades till!");
                         }
                     });
                 }
             });
+
         });
     </script>
     <h3>Add</h3>
     <div class="ui divider"></div>
     <div id="result" style="display: none;" class="ui error message"></div>
-    <div id="success-products2" style="display: none;" class="ui success message"></div>
-    <form action="add_menu_item.php" method="post" id="add_menu" class="ui form">
+    <div id="success-products" style="display: none;" class="ui success message"></div>
+    <form action="http://valfrimobil.se/add_customer.php" method="post" id="ansok" class="ui form">
         <div class="field required">
-            <label>Namn</label>
-            <input placeholder="" title="Fyll i ett namn" id="value" name="value" type="text" required>
+            <label>Kontaktperson</label>
+            <input placeholder="" title="Fyll i en kontaktperson" id="name" name="name" type="text" required>
         </div>
         <div class="field required">
-            <label>Länk</label>
-            <input placeholder="" title="Fyll i en länk" id="link" name="link" type="text" required>
+            <label>Företagsnamn</label>
+            <input placeholder="" title="Fyll i ett företagsnamn" id="company" name="company" type="text" required>
         </div>
         <div class="field required">
-            <label>Placering</label>
-            <input placeholder="" title="Fyll i en placering" id="location" name="location" type="text" required>
+            <label>Org.nr</label>
+            <input placeholder="" title="Fyll i ett org.nr" id="orgnr" name="orgnr" type="text" required>
+        </div>
+        <div class="field required">
+            <label>Adress</label>
+            <input placeholder="" id="address" title="Fyll i en adress" name="model" type="text" required>
+        </div>
+        <div class="field required">
+            <label>Postnummer</label>
+            <input placeholder="" id="postnumber" title="Fyll i ett postnummer" name="postnumber" type="text" required>
+        </div>
+        <div class="field required">
+            <label>Telefonnummmer</label>
+            <input placeholder="" id="number" title="Fyll i ett telefonnummer" name="number" type="text" required>
+        </div>
+        <div class="field required">
+            <label>E-post</label>
+            <input placeholder="" id="email" title="Fyll i en e-postadress" name="email" type="text" required>
+        </div>
+        <div class="field required">
+            <label>Användarnamn</label>
+            <input placeholder="" id="username" title="Fyll i ett telefonnummer" name="username" type="text" required>
+        </div>
+        <div class="field required">
+            <label>Lösenord</label>
+            <input placeholder="" id="password" title="Fyll i ett lösenord" name="password" type="text" required>
         </div>
         <div class="field">
             <input type="submit" value="Lägg till" class="ui button green">
@@ -162,17 +176,15 @@
             history: false,
             cache: false,
             apiSettings: {
-                url: 'pages/one_menu.php?id={$tab}'
+                url: 'pages2/one_customer.php?id={$tab}'
             }
         })
         ;
     });
-</script>
-<script>
     $(document).ready(function () {
-        $('.menuTable').dataTable({
+        $('.customertable').dataTable({
             "pagingType": "full_numbers",
-            "order": [[0, "asc"]],
+            "order": [[0, "desc"]],
             "language": {
                 "lengthMenu": "Visa _MENU_ st per sida",
                 "zeroRecords": "Inget hittades, tyvärr!",
@@ -191,4 +203,3 @@
         });
     });
 </script>
-		
