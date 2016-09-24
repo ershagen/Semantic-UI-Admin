@@ -1,9 +1,9 @@
 <h2>Pages</h2>
 <div class="ui segment">
     <div class="ui breadcrumb">
-        <a href="#" class="section">Hem</a>
+        <a href="#" class="section">Home</a>
         <i class="right chevron icon divider"></i>
-        <a class="active section">Sidor</a>
+        <a class="active section">Pages</a>
     </div>
 </div>
 <div class="ui segment">
@@ -13,10 +13,10 @@
         <thead>
         <tr>
             <th>ID</th>
-            <th>Namn</th>
-            <th>Länk</th>
-            <th>Publicerad</th>
-            <th>Åtgärder</th>
+            <th>Name</th>
+            <th>Link</th>
+            <th>Published</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -121,7 +121,7 @@
     <div id="success-products2s" style="display: none;" class="ui success message"></div>
     <form action="add_page.php" method="post" id="add_page" class="ui form">
         <div class="field required">
-            <label>Rubrik</label>
+            <label>Subject</label>
             <input placeholder="" title="Fyll i ett namn" id="name" name="name" type="text" required>
         </div>
         <div class="field required">
@@ -132,11 +132,11 @@
             </select>
         </div>
         <div class="field required">
-            <label>Länk</label>
+            <label>Link</label>
             <input title="Fyll i en länk" id="link" name="link" type="text" required>
         </div>
         <div class="field required">
-            <label>Innehåll</label>
+            <label>Content</label>
             <textarea id="page_edit" name="text"></textarea>
         </div>
         <div class="field">
